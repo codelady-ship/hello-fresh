@@ -1,0 +1,356 @@
+@media (max-width:992px){
+    .links{
+        margin-left:0.2rem;
+        gap: 0.5rem;
+    }
+    .page1 h2{ margin-left:17rem ;}
+    .page1 a{
+        margin-left: 20rem;
+    
+    }
+    .page2 h2{
+        margin: 2rem 0 2rem 18rem;
+    }
+    .why{ display: flex;
+        flex-wrap: wrap;
+        margin-left: -1rem;
+        gap: 1rem;
+        }
+        .A { width: 15rem ;
+            height: 20rem;
+            margin-left: 5rem;
+            display: flex;
+            gap: 1rem;
+        }
+        .A img{
+            width: 10rem;
+            height: 10rem;
+            margin-left: 5rem;
+        }
+        .page2 a{
+            position: absolute;
+            top: 80rem;
+            left: 20rem;
+        }
+        /*page2 son*/
+        .page3{display:flex;
+            margin: 2rem 1rem 0 -4rem;
+            gap: 0.1rem;
+            }
+            .left img{
+                width: 20rem;
+                height: 20rem;
+                margin-left: 5rem;
+            }
+          .right a{
+            margin-left: 1rem;
+          }
+            /*page3 son*/
+            .over h2{
+                font-size:2rem ;
+                margin:1rem 1rem 1rem 10rem ;
+            }    
+            .page4_img{
+                margin-left: 2rem;
+                display: flex;
+                gap: 1rem;
+            }
+            .page4_img .ox {
+                margin: 7rem 0.1rem;
+            }
+            .page4_img .ox2 {
+                 margin: 5rem -1rem;
+            }
+            .img2,.img3,.img4{
+                margin-left: 4rem;
+            }
+            .page4 a{
+                margin-left: 8rem;
+                margin-top: -5rem;
+               
+            }
+            /*page4 son*/
+            .page5img{
+               display: flex; 
+               flex-wrap: wrap;
+               margin-left: 6rem;
+            }
+            .over{
+                margin-left: -2rem;
+            }
+            /*page5 son*/
+            .page8{
+                display: flex;
+                gap: 1rem;
+                margin: 1rem 2rem;
+             }
+            .more{
+                display: flex;
+                flex-direction: column;
+                margin-left: 10rem;
+                font-size: 1.5rem;
+             }
+             .more a{
+                font-size: 1rem;
+             }
+             .s{ 
+                margin-left: 15rem;
+                gap: 1rem;
+                display: flex;
+                flex-direction: row;
+            }
+            .finish{
+                display: flex;
+                flex-direction: column;
+                gap: 0.1rem;
+                margin-left:-1rem;
+            }
+            .insta,.tvit{
+                width: 1.5rem;
+                height: 2rem;
+            
+            }
+
+
+}
+@media (max-width:768px){
+    .links{
+        margin-left:0.2rem;
+        gap: 0.5rem;
+    }
+    .page1 h2{ margin-left:17rem ;}
+    .page1 a{
+        margin-left: 20rem;
+    
+    }
+    .page2 h2{
+        margin: 2rem 0 2rem 18rem;
+    }
+    .why{ display: flex;
+        flex-wrap: wrap;
+        margin-left: -1rem;
+        gap: 1rem;
+        }
+        .A { width: 15rem ;
+            height: 20rem;
+            margin-left: 5rem;
+            display: flex;
+            gap: 1rem;
+        }
+        .A img{
+            width: 10rem;
+            height: 10rem;
+            margin-left: 5rem;
+        }
+        .page2 a{
+            position: absolute;
+            top: 80rem;
+            left: 20rem;
+        }
+        /*page2 son*/
+        .page3{display:flex;
+            margin: 2rem 1rem 0 -4rem;
+            gap: 0.1rem;
+            }
+            .left img{
+                width: 20rem;
+                height: 20rem;
+                margin-left: 5rem;
+            }
+          .right a{
+            margin-left: 1rem;
+          }
+            /*page3 son*/
+            .over h2{
+                font-size:2rem ;
+                margin:1rem 1rem 1rem 10rem ;
+            }    
+            .page4_img{
+                margin-left: 2rem;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            .page4_img .ox {
+                margin: 7rem 0.1rem;
+            }
+            .page4_img .ox2 {
+                 margin: 5rem -1rem;
+            }
+            .img2,.img3,.img4{
+                margin-left: 4rem;
+            }
+            .page4 a{
+                margin-left: 10rem;
+                margin-top: 2rem;
+               
+            }
+            /*page4 son*/
+            .page5img{
+               display: flex; 
+               flex-wrap: wrap;
+               margin-left: 6rem;
+            }
+            .over{
+                margin-left: -2rem;
+            }
+            /*page5 son*/
+            .page8{
+                display: flex;
+                gap: 1rem;
+                margin: 1rem 2rem;
+             }
+            .more{
+                display: flex;
+                flex-direction: column;
+                margin-left: 10rem;
+                font-size: 1.5rem;
+             }
+             .more a{
+                font-size: 1rem;
+             }
+             .s{ 
+                margin-left: 15rem;
+                gap: 1rem;
+                display: flex;
+                flex-direction: row;
+            }
+            .finish{
+                display: flex;
+                flex-direction: column;
+                gap: 0.1rem;
+                margin-left:-1rem;
+            }
+            .insta,.tvit{
+                width: 1.5rem;
+                height: 2rem;
+            
+            }
+
+
+}
+
+@media (max-width:500px){
+    .links{
+        display: none;
+    }
+    .login{display: none;}
+    .bars{
+        color: rgb(30, 31, 32);
+        display: block;
+        margin-left: 20rem;
+    }
+    .page1{background: url("./images/page1.png")no-repeat center;
+        background-size:cover;
+        width: 100vw;
+        height: 70vw;
+    
+    }
+    .page1 h2{
+        margin: 5rem 0 0 9rem;
+    }
+    .page1 a{
+        margin-left: 13rem;
+    
+    }/*page1 son*/
+    .page2 h2{
+        margin: 2rem 0 2rem 10rem;
+    }
+    .why{display:flex;
+        flex-wrap: wrap;
+        margin-left: 5rem;
+        gap: 2rem;
+        }
+        .A { width: 10rem ;
+            height: 20rem;
+            display: flex;
+            gap: 1rem;
+        }
+        .A img{
+            width: 8rem;
+            height: 8rem;
+            margin-left: 2rem;
+        }
+        .page2 a{
+            
+            position: absolute;
+            top: 70rem;
+            left: 13rem;
+        }
+        /*page2 son*/
+        .page3{display:flex;
+            flex-wrap: wrap;
+            margin: 2rem 0 0 2rem;
+            gap: 2rem;
+            }
+            .left img{
+                width: 28rem;
+            }
+            /*page3 son*/
+            .over h2{
+                font-size:2rem ;
+                margin:1rem 2rem 1rem 8rem ;
+            }    
+            .page4_img{
+                margin-left: 2rem;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            .page4_img .ox {
+                margin: 7rem 0.1rem;
+            }
+            .page4_img .ox2 {
+                 margin: 5rem -1rem;
+            }
+            .img2,.img3,.img4{
+                margin-left: 4rem;
+            }
+            .page4 a{
+                margin-left: 2rem;
+                margin-top: 2rem;
+               
+            }
+            /*page4 son*/
+            .page5img{
+               display: flex; 
+               flex-wrap: wrap;
+               margin-left: 6rem;
+            }
+            .over{
+                margin-left: -2rem;
+            }
+            /*page5 son*/
+            .page8{
+                display: flex;
+                gap: 1rem;
+                margin: 1rem 2rem;
+             }
+            .more{
+                display: flex;
+                flex-direction: column;
+                margin-left: 2rem;
+                font-size: 1.5rem;
+             }
+             .more a{
+                font-size: 1rem;
+             }
+             .s{ 
+                margin-left: -1rem;
+                gap: 1rem;
+                display: flex;
+                flex-direction: row;
+            }
+            .finish{
+                display: flex;
+                flex-direction: column;
+                gap: 0.1rem;
+                margin-left: 2rem;
+            }
+            .insta,.tvit{
+                width: 1.5rem;
+                height: 2rem;
+            
+            }
+
+}

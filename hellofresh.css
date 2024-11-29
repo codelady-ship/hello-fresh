@@ -1,0 +1,327 @@
+*{margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+html{font-size:calc(2vw+8px);}
+@font-face{src: url(./font-family/OpenSans-Regular);
+}
+
+
+.navbar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1%;
+    margin-bottom: 2px;
+    height: 3rem;
+    width: 100vw;
+    background-color: aliceblue;
+}
+.links{
+    display: flex;
+    gap: 2rem;
+    margin-left: 20rem;
+}
+.links a,.login a{
+ color: rgb(19, 20, 20);
+ font:1.2rem;
+
+}
+.login a{
+    color: darkgreen;
+    border: 2px solid;
+    width: 5rem;
+    padding: 0.5em;
+    margin-left: 2rem;
+   
+}
+.bars{
+    color: rgb(30, 31, 32);
+    display: none;
+}
+.page1{
+    background: url("./images/page1.png")no-repeat center;
+    background-size:cover;
+    height: 80vh;
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
+    text-align: center;
+}
+.page1 h2{
+    width: 15rem;
+    font-size: 1.8rem;
+    margin: 10rem 0 0 35rem;
+}
+.page1 a{
+    color: aliceblue;
+    border: 1px solid;
+    padding: 0.5em;
+    width: 8rem;
+    height: 2rem;
+    background-color:darkgreen;
+    margin-left: 38rem;
+}
+/*page1 son*/
+.page2 h2{
+    margin: 2rem 0 2rem 38rem;
+}
+
+.why{display: flex;
+margin-left: 10rem;
+gap: 2.5rem;
+}
+
+.A { width: 15rem ;
+    height: 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.A img{
+    width: 8rem;
+    height: 8rem;
+    margin-left: 4rem;
+}
+.page2 a{
+    color: green;
+    border: 1px solid green;
+    padding: 0.5rem;
+    width: 6rem;
+    height: 2rem;
+    position: absolute;
+    top: 55rem;
+    left: 40rem;
+}
+.page2 p,.page2 h3{
+    text-align: center;
+}
+/*page2 son*/
+.page3{
+    display:flex;
+    margin: 15rem 0 0 10rem;
+    gap: 2rem;
+}
+.left img{
+    width: 30rem;
+}
+.right h2{
+    margin-left: 5rem;
+}
+.right p{
+    margin: 1rem;
+}
+.right a,.page4 a{ 
+    display: inline-block;
+    color: aliceblue;
+    text-align: center;
+    width: 25rem;
+    height: 2rem;
+    padding: 0.5rem;
+    border: 1px solid green;
+    background-color: green;
+    margin: 0.2rem 0 0 1rem;
+}
+/*page3 son*/
+.page4{
+    display: flex;
+    flex-direction: column;
+}
+.page4 .over{ 
+    gap: 1rem;
+}
+.over h2{
+    font-size:2rem ;
+    margin:1rem 10rem 1rem 28rem ;
+}
+.over p{ margin: 1rem;
+    font-size: 1rem;
+    text-align: center;}
+
+.page4_img{
+    margin-left: 5rem;
+    display: flex;
+    gap: 1rem;
+}
+.page4_img .ox {
+    width: 2.8rem;     
+    height: 2.8rem; 
+    margin: 7rem 1.2rem;
+}
+.page4_img .ox2 {
+     width: 5.3rem;
+     height: 5.3rem;
+     margin: 5rem -1.2rem;
+}
+
+.img1 h2,.img2 h2,.img3 h2,.img4 h2{
+   font-size: 1.2rem ;
+   background-color: beige;
+   margin: 15rem 0 0.1rem 0;
+
+}
+.img1 p,.img2 p,.img3 p,.img4 p{
+   font-size: 0.8rem;
+   background-color: beige;
+}
+
+.img1{
+    width: 15rem;
+    height: 18rem;
+    background-image: url(./images/page4-1.jpg);
+    background-position:  no-repeat  center ;
+    background-size: cover;
+
+}
+.img2{width: 15rem;
+    height: 18rem;
+    background-image: url(./images/page4-2.jpg);
+    background-position:  no-repeat  center ;
+    background-size: cover;
+   
+}
+.img3{width: 15rem;
+    height: 18rem;
+    background-image: url(./images/page4-3.jpg);
+    background-position:  no-repeat  center ;
+    background-size: cover;
+}
+.img4{width: 15rem;
+    height: 18rem;
+    background-image: url(./images/page4-4.jpg);
+    background-position:  no-repeat  center ;
+    background-size: cover;
+}
+.page4 a{
+    margin-left: 30rem;
+    margin-top: 2rem;
+   
+}
+/*page4 son*/
+.page5img {
+    display: flex;
+    gap: 2rem;
+    margin-left: 9rem;
+    text-align: center;
+
+}
+.page5img img{
+ width: 15rem;
+ height: 15rem;
+}
+.C p{
+    width: 15rem;
+}
+/*page5 son*/
+.page6{
+    margin: 1rem 0;
+    background: url("./images/page6.png")no-repeat center;
+    background-size:cover;
+    height: 25vh;
+    text-align: center;
+    gap: 2rem;
+}
+.page6 h2{
+    margin: 2rem;
+}
+.page6 p{
+    margin-bottom: 2rem;
+}
+.page6 a{
+    color: aliceblue;
+    background-color: green;
+    padding: 0.5rem 2rem;
+    border: 1px solid;
+    margin-bottom: -10rem;
+}
+/*page6 son*/
+ .page7 h2{ text-align: center;
+ }
+ .more{
+    display: flex;
+    flex-direction: column;
+    margin-left: 25rem;
+    font-size: 1.5rem;
+ }
+ .more img{
+ width: 2rem;
+ height: 2rem;
+ margin-right: 1rem;
+}
+/*page7 son*/
+.page8,.son{
+   display: flex;
+   gap: 3rem;
+   margin: 1rem 2rem;
+}
+.page8 .D{
+    width: 15rem;
+    display: flex;
+    flex-direction: column;
+}
+/*page8 son*/
+.son{
+    border-top: 1px solid;
+    padding: 1rem;
+}
+
+.insta{
+    border-radius: 30%;
+    border: 1px solid;
+    padding: 0.3rem;
+    background-color: red;
+}
+.tvit{
+    border-radius: 50%;
+    padding: 0.3rem;
+    background-color: blue;
+}
+.s{ 
+    margin-left: 40rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
