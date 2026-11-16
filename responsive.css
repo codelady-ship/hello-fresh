@@ -34,8 +34,8 @@
     .page1::before {
         content: "";
         display: block;
-        aspect-ratio: 16 / 9;
-        background: url("./images/page1.webp") no-repeat 50% 0 / cover;
+        aspect-ratio: 1920 / 790;
+        background: url("./images/page1.webp") no-repeat center / cover;
     }
     .hero-text { max-width: none; padding: 1.5rem 1rem 0; }
     .page1 h1 { font-size: 1.8rem; }
