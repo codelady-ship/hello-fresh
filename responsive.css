@@ -1,0 +1,64 @@
+@media (max-width: 992px) {
+    .why, .page5img { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .page4_img { grid-auto-columns: calc((100% - 1rem) / 2); }
+    .page8 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Mobile menu: hamburger toggles the nav (see hellofresh.js) */
+@media (max-width: 820px) {
+    .bars { display: block; }
+    .links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background-color: aliceblue;
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+        padding: 0.5rem 1rem 1rem;
+    }
+    .links.open { display: flex; }
+    .links a { padding: 0.7rem 0.5rem; border-bottom: 1px solid #dde7ef; }
+    .links .login { margin-top: 0.7rem; text-align: center; border-bottom: 2px solid; }
+
+    .page1 {
+        min-height: 0;
+        aspect-ratio: auto;
+        padding: 0;
+        flex-direction: column;
+        background: none;
+    }
+    .page1::before {
+        content: "";
+        display: block;
+        aspect-ratio: 16 / 9;
+        background: url("./images/page1.webp") no-repeat 50% 0 / cover;
+    }
+    .hero-text { max-width: none; padding: 1.5rem 1rem 0; }
+    .page1 h1 { font-size: 1.8rem; }
+    .page3 { flex-direction: column; gap: 1.5rem; }
+    .right .btn { align-self: center; }
+}
+
+@media (max-width: 600px) {
+    section { padding: 2.5rem 1rem; }
+    h2 { font-size: 1.6rem; }
+    .why { gap: 1.5rem; }
+    .A img { width: 6rem; height: 6rem; }
+    .carousel { gap: 0.3rem; }
+    .arrow img { width: 2.2rem; height: 2.2rem; }
+    .arrow.next img { width: 4.2rem; height: 4.2rem; margin: -1rem; }
+    .page4_img { grid-auto-columns: 100%; }
+    .page5img { grid-template-columns: minmax(0, 1fr); max-width: 360px; }
+    .page6 { background-position: 20% center; }
+    .more summary { font-size: 1rem; }
+    .more details p { padding-left: 3rem; }
+    .son { flex-direction: column; align-items: flex-start; gap: 1rem; }
+}
+
+@media (max-width: 380px) {
+    .why, .page8 { grid-template-columns: minmax(0, 1fr); }
+}
