@@ -242,10 +242,8 @@ footer { padding: 2rem clamp(1rem, 4vw, 4rem) 1rem; background: #f7f7f7; }
     font-size: 0.85rem;
 }
 .finish a { color: #067a46; text-decoration: underline; overflow-wrap: anywhere; }
-.s { display: flex; gap: 0.8rem; align-items: center; }
-.insta, .tvit { display: inline-flex; padding: 0.3rem; }
-.insta { border-radius: 30%; background-color: #e1306c; }
-.tvit { border-radius: 50%; background-color: #1d9bf0; }
+.s { display: inline-flex; gap: 0.5rem; align-items: center; color: #1e1f20; text-decoration: none; font-weight: 600; white-space: nowrap; }
+.s:hover, .s:focus-visible { color: #067a46; text-decoration: underline; }
 /* arrow-next.png has more transparent padding than arrow-prev.png */
 .arrow.next img { width: 5.3rem; height: 5.3rem; margin: -1.25rem; }
 .page6 h2, .page6 p { background: rgba(255, 255, 255, 0.85); padding: 0.2rem 1rem; border-radius: 4px; }

@@ -4,7 +4,7 @@
 
 A responsive clone of the HelloFresh meal-kit landing page, built with plain HTML, CSS and a little JavaScript to practise layout and responsive design.
 
-> **Practice clone.** This is a learning project. It is not affiliated with, endorsed by or connected to HelloFresh. Brand names and images belong to their owners.
+> **Practice clone.** This is a learning project. It is not affiliated with, endorsed by or connected to HelloFresh. The HelloFresh name, logo, icons and recipe photos belong to HelloFresh. The hero and community photos are free stock photos from Unsplash (see [Photo credits](#photo-credits)); the clone shows no photos of real customers or celebrities.
 >
 > 🇦🇿 Təlim layihəsi: HelloFresh açılış səhifəsinin HTML, CSS və JavaScript ilə hazırlanmış responsiv klonu.
 
@@ -18,8 +18,21 @@ A responsive clone of the HelloFresh meal-kit landing page, built with plain HTM
 - FAQ built with native `<details>` / `<summary>` (no JavaScript needed)
 - Responsive layout with CSS Grid and Flexbox, tested at 390, 768, 1440 and 1920 px
 - Self-hosted Open Sans font via `@font-face`
-- Large images converted to WebP (hero image went from 4.9 MB to 140 KB)
+- Large images converted to WebP (every photo is under 200 KB)
 - SEO basics: meta description, canonical URL, Open Graph/Twitter tags, favicon, `robots.txt`, `sitemap.xml`
+
+## Photo credits
+
+Free photos from [Unsplash](https://unsplash.com), used under the [Unsplash License](https://unsplash.com/license). They were cropped and converted to WebP.
+
+| File | Photo | Photographer |
+|---|---|---|
+| `images/page1.webp` (hero, left bowl) | [Bowl of food on a white table](https://unsplash.com/photos/a-bowl-of-food-on-a-white-table-KwGoCJGwbCs) | [Xavier Chng](https://unsplash.com/@cohesionsingapore) |
+| `images/page1.webp` (hero, right bowl) | [Plate of food with meat, vegetables and sauce](https://unsplash.com/photos/a-plate-of-food-with-meat-vegetables-and-sauce-o3Og5MYceTI) | [Xavier Chng](https://unsplash.com/@cohesionsingapore) |
+| `images/page5-1.webp` | [Person slicing vegetable](https://unsplash.com/photos/person-slicing-vegetable-uB7q7aipU2o) | Jonathan Borba |
+| `images/page5-2.webp` | [Person holding black frying pan with cooked food](https://unsplash.com/photos/person-holding-black-frying-pan-with-cooked-food-UjIkvPvfsFY) | Carlos Fernández |
+| `images/page5-3.webp` | [People mixing items on bowl](https://unsplash.com/photos/people-mixing-items-on-bowl-XiWtCLWK5K8) | Annie Spratt |
+| `images/page5-4.webp` | [Hands arranging fresh cherry tomatoes on a wooden board](https://unsplash.com/photos/hands-arranging-fresh-cherry-tomatoes-on-a-wooden-board-Yy8FETHf8lo) | [Ahmet Koç](https://unsplash.com/@ahmetkoc) |
 
 ## Tech stack
 
