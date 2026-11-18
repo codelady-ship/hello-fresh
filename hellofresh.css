@@ -202,6 +202,39 @@ section { padding: 3rem 1.5rem; }
     text-align: center;
 }
 
+/* plan request form (sends to the Spring Boot API, see hellofresh.js) */
+.plan-form {
+    width: 100%;
+    max-width: 40rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 1.2rem;
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 4px;
+    text-align: left;
+}
+.plan-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: 0.8rem; }
+.plan-form label { display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.85rem; font-weight: 700; }
+.plan-form select, .plan-form input {
+    font: inherit;
+    font-weight: 400;
+    font-size: 1rem;
+    padding: 0.45rem 0.6rem;
+    border: 1px solid #999;
+    border-radius: 4px;
+    background: #fff;
+    color: #1d1d1d;
+}
+.plan-form select:focus-visible, .plan-form input:focus-visible { outline: 2px solid #067a46; outline-offset: 1px; }
+.plan-form input[aria-invalid="true"] { border-color: #b3261e; }
+.plan-form .plan-price { font-weight: 700; color: #067a46; background: none; padding: 0; }
+.plan-form .btn { align-self: flex-start; cursor: pointer; font: inherit; font-weight: 700; }
+.plan-form .btn:disabled { opacity: 0.7; cursor: wait; }
+.plan-form .form-status { background: none; padding: 0; font-size: 0.95rem; min-height: 1.5em; }
+.plan-form .form-status.success { color: #067a46; font-weight: 700; }
+.plan-form .form-status.error { color: #b3261e; font-weight: 700; }
+
 /* page7 faq */
 .page7 h2 { text-align: center; margin-bottom: 1.5rem; }
 .more { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.6rem; }

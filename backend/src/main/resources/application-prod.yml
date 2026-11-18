@@ -1,0 +1,13 @@
+# Production profile (Render + Neon Postgres). All values come from environment variables; nothing secret is stored here.
+# Either set JDBC_DATABASE_URL / JDBC_DATABASE_USERNAME / JDBC_DATABASE_PASSWORD, or set DATABASE_URL to the
+# postgresql://user:password@host/db?sslmode=require string from Neon and DatabaseUrlEnvironmentPostProcessor
+# converts it into the three JDBC properties.
+spring:
+  datasource:
+    url: ${JDBC_DATABASE_URL}
+    username: ${JDBC_DATABASE_USERNAME}
+    password: ${JDBC_DATABASE_PASSWORD}
+    hikari:
+      # Neon free tier allows few connections; keep the pool small.
+      maximum-pool-size: 5
+      minimum-idle: 1
