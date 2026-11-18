@@ -86,6 +86,13 @@ class PlanRequestServiceTest {
     }
 
     @Test
+    void deleteOlderThanUsesClockMinusRetention() {
+        when(planRequests.deleteByCreatedAtBefore(Instant.parse("2026-10-19T10:00:00Z"))).thenReturn(3);
+
+        assertThat(service.deleteOlderThan(java.time.Duration.ofDays(30))).isEqualTo(3);
+    }
+
+    @Test
     void rejectsUnavailablePlan() {
         when(plans.findByPeopleAndMealsPerWeek(3, 3)).thenReturn(Optional.empty());
 

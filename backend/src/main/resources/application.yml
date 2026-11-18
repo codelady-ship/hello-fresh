@@ -48,3 +48,9 @@ app:
   cors:
     # Exact origin for GitHub Pages plus any localhost/127.0.0.1 port for local development.
     allowed-origin-patterns: "${CORS_ALLOWED_ORIGINS:https://codelady-ship.github.io,http://localhost:[*],http://127.0.0.1:[*]}"
+  rate-limit:
+    # POST /api/plan-requests per client IP per minute (in-memory, per instance)
+    plan-requests-per-minute: ${PLAN_REQUESTS_PER_MINUTE:5}
+  retention:
+    # Plan requests (name + email) are deleted after this many days by MaintenanceJobs
+    plan-request-days: ${PLAN_REQUEST_RETENTION_DAYS:30}

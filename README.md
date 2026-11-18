@@ -3,7 +3,7 @@
 [![Live demo](https://img.shields.io/badge/live-demo-067a46?style=for-the-badge)](https://codelady-ship.github.io/hello-fresh/hellofresh.html)
 [![Backend CI](https://github.com/codelady-ship/hello-fresh/actions/workflows/backend-ci.yml/badge.svg)](https://github.com/codelady-ship/hello-fresh/actions/workflows/backend-ci.yml)
 
-A responsive clone of the HelloFresh meal-kit landing page (HTML, CSS, vanilla JavaScript) with a **Java 21 / Spring Boot 3 REST API** behind it. The page loads its menu cards and plan prices from the API and sends the "Flexible Plans" form to it. If the API is asleep or down, the page keeps its built-in content, so the GitHub Pages site never looks broken.
+A responsive clone of the HelloFresh meal-kit landing page (HTML, CSS, vanilla JavaScript) with a **Java 21 / Spring Boot 3 REST API** behind it. The page loads its menu cards and plan prices from the API and sends the "Flexible Plans" form to it. If the API is not configured, asleep or down, the page keeps its built-in content, so the GitHub Pages site never looks broken. (Until the API is deployed, `DEPLOYED_API_URL` in `hellofresh.js` is `null` and the live page runs on static content only.)
 
 > **Practice clone.** This is a learning project. It is not affiliated with, endorsed by or connected to HelloFresh. The HelloFresh name, logo, icons and recipe photos belong to HelloFresh. The hero and community photos are free stock photos from Unsplash (see [Photo credits](#photo-credits)); the clone shows no photos of real customers or celebrities.
 >
@@ -96,7 +96,7 @@ All list endpoints are paginated with `page` (0-based), `size` (max 50) and `sor
 | GET | `/api/meal-kits/{slug}` | One meal kit, e.g. `veggie` | 200 | 400, 404 |
 | GET | `/api/plans` | All plans with servings, price per serving, shipping, weekly total | 200 | 400 |
 | GET | `/api/plans/quote?people=2&mealsPerWeek=3` | Price for one combination | 200 | 400 out of range, 404 not offered |
-| POST | `/api/plan-requests` | Body `{name, email, people, mealsPerWeek, mealKitSlug?}`; stores the request with a price snapshot | 201 | 400 validation, 422 plan/meal kit not available |
+| POST | `/api/plan-requests` | Body `{name, email, people, mealsPerWeek, mealKitSlug?}`; stores the request with a price snapshot | 201 | 400 validation, 422 plan/meal kit not available, 429 more than 5 per minute from one IP |
 | GET | `/actuator/health` | Health check (Render uses it) | 200 | |
 | GET | `/swagger-ui`, `/v3/api-docs` | Interactive docs and OpenAPI JSON | 200 | |
 
@@ -111,6 +111,12 @@ curl -X POST http://localhost:8080/api/plan-requests \
 
 CORS allows only `https://codelady-ship.github.io` and `http://localhost:*` / `http://127.0.0.1:*` (override with the `CORS_ALLOWED_ORIGINS` env var).
 
+**Abuse limits and data retention.** The plan form is a public write endpoint that stores a name and an email, so:
+
+- `POST /api/plan-requests` is rate limited per client IP (in memory, default 5 per minute, `PLAN_REQUESTS_PER_MINUTE`). Over the limit the API answers `429 Too Many Requests` as problem+json with a `Retry-After` header. It is a basic spam throttle for a single free instance, not a security boundary.
+- A scheduled job (`MaintenanceJobs`) deletes plan requests older than **30 days** (`PLAN_REQUEST_RETENTION_DAYS`). It runs one minute after start-up and then every 6 hours, so it also runs after a sleeping free instance wakes up.
+- The form says on the page that this is a practice project: nothing is ordered and the data only goes to this demo's database.
+
 **About the seed data.** The menu card titles, subtitles and images, and the "from $7.49 per meal" price, are taken from the page. Cooking times, calories, the other prices and the $10.99 shipping fee are sample values for this practice project.
 
 ### Deploy (Render + Neon)
@@ -121,7 +127,7 @@ The API runs as a free Docker web service on Render; the database is a free Neon
 2. **Render**: New > Blueprint > pick this repository. Render reads `render.yaml` and creates the `hellofresh-api` web service (Docker, free plan, Frankfurt, health check `/actuator/health`).
 3. When Render asks for `DATABASE_URL`, paste the Neon connection string. The app converts it to JDBC settings at startup. (Alternatively set `JDBC_DATABASE_URL=jdbc:postgresql://HOST/hellofresh?sslmode=require`, `JDBC_DATABASE_USERNAME` and `JDBC_DATABASE_PASSWORD` instead.)
 4. Wait for the first deploy. Flyway creates the tables and seeds the data. Check `https://<service>.onrender.com/actuator/health` returns `{"status":"UP"}`.
-5. If the service URL is not `https://hellofresh-api.onrender.com`, change `API_BASE_URL` at the top of `hellofresh.js` and push to `main` (GitHub Pages redeploys the page).
+5. Connect the page: in `hellofresh.js`, change `const DEPLOYED_API_URL = null;` to the exact URL Render shows for the service (e.g. `'https://hellofresh-api-xxxx.onrender.com'`) and push to `main` (GitHub Pages redeploys the page). Until then the live page makes no API calls: it shows its static content and the form says the demo backend is not connected yet. Do not guess the URL: an unclaimed `*.onrender.com` name could be registered by someone else.
 
 Free Render instances sleep after 15 minutes without traffic and need about 30 to 60 seconds to wake up. The page waits 8 seconds for data and otherwise keeps its static content; the form waits up to 45 seconds and tells the user it may be waking the server.
 
@@ -131,9 +137,9 @@ Free Render instances sleep after 15 minutes without traffic and need about 30 t
 |---|---|
 | ![Menu carousel rendered from GET /api/meal-kits](docs/screenshots/api-menus-1440.jpg) | ![Flexible plans form after a successful POST /api/plan-requests](docs/screenshots/api-plans-1440.jpg) |
 
-| API stopped: static fallback and error state (390 px) | Swagger UI |
+| No API configured (live page before deploy, 390 px) | Swagger UI |
 |---|---|
-| ![Plan form showing the error message when the API cannot be reached](docs/screenshots/fallback-plans-390.jpg) | ![Swagger UI listing the API endpoints](docs/screenshots/swagger.jpg) |
+| ![Plan form with the practice-project note and the "demo backend is not connected yet" message](docs/screenshots/no-api-plans-390.jpg) | ![Swagger UI listing the API endpoints](docs/screenshots/swagger.jpg) |
 
 ## Features
 

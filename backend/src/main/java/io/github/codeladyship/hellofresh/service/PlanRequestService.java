@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.time.Clock;
+import java.time.Duration;
 import java.time.Instant;
 import java.util.Locale;
 
@@ -55,5 +56,11 @@ public class PlanRequestService {
                 mealKit,
                 Instant.now(clock));
         return PlanRequestResponse.from(planRequests.save(request));
+    }
+
+    /** Deletes plan requests created before now minus {@code retention}; returns how many were deleted. */
+    @Transactional
+    public int deleteOlderThan(Duration retention) {
+        return planRequests.deleteByCreatedAtBefore(Instant.now(clock).minus(retention));
     }
 }

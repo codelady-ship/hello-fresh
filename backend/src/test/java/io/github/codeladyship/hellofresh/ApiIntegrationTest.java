@@ -11,6 +11,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.options;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -62,6 +63,32 @@ class ApiIntegrationTest {
                 .andExpect(header().string(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, PAGES_ORIGIN))
                 .andExpect(jsonPath("$.weeklyTotal").value(138.83))
                 .andExpect(jsonPath("$.mealKitSlug").value("family-friendly"));
+    }
+
+    @Test
+    void sixthPlanRequestPerMinuteFromOneIpIs429ProblemJson() throws Exception {
+        String body = """
+                {"name":"Spam","email":"spam@example.com","people":2,"mealsPerWeek":3}
+                """;
+        for (int i = 0; i < 5; i++) {
+            mvc.perform(post("/api/plan-requests").header("X-Forwarded-For", "203.0.113.50")
+                            .contentType(MediaType.APPLICATION_JSON).content(body))
+                    .andExpect(status().isCreated());
+        }
+        mvc.perform(post("/api/plan-requests").header("X-Forwarded-For", "203.0.113.50")
+                        .contentType(MediaType.APPLICATION_JSON).content(body))
+                .andExpect(status().isTooManyRequests())
+                .andExpect(header().exists(HttpHeaders.RETRY_AFTER))
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_PROBLEM_JSON))
+                .andExpect(jsonPath("$.status").value(429))
+                .andExpect(jsonPath("$.title").value("Too many requests"));
+
+        // a different client is still served, and GET endpoints are not limited
+        mvc.perform(post("/api/plan-requests").header("X-Forwarded-For", "203.0.113.51")
+                        .contentType(MediaType.APPLICATION_JSON).content(body))
+                .andExpect(status().isCreated());
+        mvc.perform(get("/api/plans").header("X-Forwarded-For", "203.0.113.50"))
+                .andExpect(status().isOk());
     }
 
     @Test

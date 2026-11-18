@@ -37,6 +37,11 @@ public class DatabaseUrlEnvironmentPostProcessor implements EnvironmentPostProce
         if (!"postgres".equals(scheme) && !"postgresql".equals(scheme)) {
             throw new IllegalArgumentException("DATABASE_URL must start with postgres:// or postgresql://");
         }
+        if (uri.getHost() == null || uri.getHost().isBlank()) {
+            // e.g. an unencoded '@' or '/' in the password makes the URI unparseable as user@host
+            throw new IllegalArgumentException("DATABASE_URL has no host. Expected "
+                    + "postgresql://USER:PASSWORD@HOST/DB; percent-encode special characters in the password");
+        }
         StringBuilder jdbc = new StringBuilder("jdbc:postgresql://").append(uri.getHost());
         if (uri.getPort() > 0) {
             jdbc.append(':').append(uri.getPort());
@@ -54,12 +59,19 @@ public class DatabaseUrlEnvironmentPostProcessor implements EnvironmentPostProce
         if (userInfo != null) {
             int colon = userInfo.indexOf(':');
             String user = colon >= 0 ? userInfo.substring(0, colon) : userInfo;
-            props.put("JDBC_DATABASE_USERNAME", URLDecoder.decode(user, StandardCharsets.UTF_8));
+            props.put("JDBC_DATABASE_USERNAME", percentDecode(user));
             if (colon >= 0) {
-                props.put("JDBC_DATABASE_PASSWORD",
-                        URLDecoder.decode(userInfo.substring(colon + 1), StandardCharsets.UTF_8));
+                props.put("JDBC_DATABASE_PASSWORD", percentDecode(userInfo.substring(colon + 1)));
             }
         }
         return props;
+    }
+
+    /**
+     * Decodes %XX escapes only. URLDecoder alone is form decoding and would turn a literal '+'
+     * in a user name or password into a space, so '+' is protected first.
+     */
+    static String percentDecode(String value) {
+        return URLDecoder.decode(value.replace("+", "%2B"), StandardCharsets.UTF_8);
     }
 }

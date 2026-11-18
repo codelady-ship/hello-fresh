@@ -1,11 +1,14 @@
 // ---------------------------------------------------------------------------
-// API config: the Spring Boot backend in backend/ (deployed on Render).
-// Set API_BASE_URL to the Render service URL after deploying. On localhost the
-// page talks to `./mvnw spring-boot:run` on port 8080.
+// API config: the Spring Boot backend in backend/.
+// DEPLOYED_API_URL is null until the API is deployed: the live page then makes
+// no API calls at all and shows only its static content. After deploying, set
+// it to the exact URL Render assigned, e.g. 'https://<service>.onrender.com'.
+// On localhost the page talks to `./mvnw spring-boot:run` on port 8080.
 // ---------------------------------------------------------------------------
+const DEPLOYED_API_URL = null;
 const API_BASE_URL = ['localhost', '127.0.0.1'].includes(location.hostname)
     ? 'http://localhost:8080'
-    : 'https://hellofresh-api.onrender.com';
+    : DEPLOYED_API_URL;
 const LOAD_TIMEOUT_MS = 8000;    // after 8 s keep the static cards/prices (Render free cold starts)
 const SUBMIT_TIMEOUT_MS = 45000; // a sleeping free instance can take a while to answer the first POST
 
@@ -179,6 +182,12 @@ form.addEventListener('submit', async (event) => {
         return;
     }
 
+    if (!API_BASE_URL) {
+        setStatus('The demo backend is not connected yet, so nothing was sent. '
+            + `Your plan would cost ${priceLine.textContent}.`, 'info');
+        return;
+    }
+
     submitBtn.disabled = true;
     setStatus('Sending your request… (the free server may need a few seconds to wake up)');
     try {
@@ -210,9 +219,12 @@ form.addEventListener('submit', async (event) => {
 updatePrice();
 
 // Load live data; on any error or timeout the static content simply stays.
-getJson('/api/meal-kits?size=12')
-    .then((page) => renderMealKits(page.content || []))
-    .catch((err) => console.info('Meal kits: using built-in content.', err.message));
-getJson('/api/plans?size=50')
-    .then((page) => renderPlans(page.content || []))
-    .catch((err) => console.info('Plans: using built-in prices.', err.message));
+// No API configured: no requests at all, static content only.
+if (API_BASE_URL) {
+    getJson('/api/meal-kits?size=12')
+        .then((page) => renderMealKits(page.content || []))
+        .catch((err) => console.info('Meal kits: using built-in content.', err.message));
+    getJson('/api/plans?size=50')
+        .then((page) => renderPlans(page.content || []))
+        .catch((err) => console.info('Plans: using built-in prices.', err.message));
+}

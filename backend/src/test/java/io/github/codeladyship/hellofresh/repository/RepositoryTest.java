@@ -60,6 +60,22 @@ class RepositoryTest {
     }
 
     @Test
+    void deletesOnlyPlanRequestsOlderThanTheCutoff() {
+        Plan plan = plans.findByPeopleAndMealsPerWeek(2, 3).orElseThrow();
+        PlanRequest old = planRequests.save(new PlanRequest("Old", "old@example.com", plan, null,
+                Instant.parse("2026-10-01T00:00:00Z")));
+        PlanRequest recent = planRequests.save(new PlanRequest("New", "new@example.com", plan, null,
+                Instant.parse("2026-11-17T00:00:00Z")));
+        em.flush();
+
+        int deleted = planRequests.deleteByCreatedAtBefore(Instant.parse("2026-10-19T00:00:00Z"));
+
+        assertThat(deleted).isGreaterThanOrEqualTo(1);
+        assertThat(planRequests.findById(old.getId())).isEmpty();
+        assertThat(planRequests.findById(recent.getId())).isPresent();
+    }
+
+    @Test
     void savesPlanRequestWithRelations() {
         Plan plan = plans.findByPeopleAndMealsPerWeek(2, 3).orElseThrow();
         MealKit kit = mealKits.findBySlug("veggie").orElseThrow();

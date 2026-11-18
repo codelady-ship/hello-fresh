@@ -30,6 +30,26 @@ class DatabaseUrlEnvironmentPostProcessorTest {
     }
 
     @Test
+    void keepsPlusSignsInUserAndPassword() {
+        var props = DatabaseUrlEnvironmentPostProcessor.convert("postgresql://app+user:a+b%2Bc%20d@h/db");
+
+        assertThat(props)
+                .containsEntry("JDBC_DATABASE_USERNAME", "app+user")
+                .containsEntry("JDBC_DATABASE_PASSWORD", "a+b+c d");
+    }
+
+    @Test
+    void failsClearlyWhenHostIsMissing() {
+        // unencoded '/' in the password: URI parsing finds no host
+        assertThatThrownBy(() -> DatabaseUrlEnvironmentPostProcessor.convert("postgresql://u:pa/ss@h/db"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("no host");
+        assertThatThrownBy(() -> DatabaseUrlEnvironmentPostProcessor.convert("postgresql:///db"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("no host");
+    }
+
+    @Test
     void rejectsOtherSchemes() {
         assertThatThrownBy(() -> DatabaseUrlEnvironmentPostProcessor.convert("mysql://u:p@h/db"))
                 .isInstanceOf(IllegalArgumentException.class);
