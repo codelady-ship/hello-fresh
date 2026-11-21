@@ -145,6 +145,43 @@
         <section class="page6" id="plans" aria-labelledby="plans-title">
             <h2 id="plans-title">Flexible Plans</h2>
             <p>to meet your household's needs</p>
+            <form class="plan-form" id="plan-form" novalidate>
+                <div class="plan-row">
+                    <label>People
+                        <select name="people" id="plan-people">
+                            <option value="2" selected>2 people</option>
+                            <option value="4">4 people</option>
+                        </select>
+                    </label>
+                    <label>Meals per week
+                        <select name="mealsPerWeek" id="plan-meals">
+                            <option value="3" selected>3 meals</option>
+                            <option value="4">4 meals</option>
+                            <option value="5">5 meals</option>
+                        </select>
+                    </label>
+                    <label>Menu
+                        <select name="mealKitSlug" id="plan-kit">
+                            <option value="meat-and-veggies" selected>Meat &amp; Veggies</option>
+                            <option value="veggie">Veggie</option>
+                            <option value="family-friendly">Family Friendly</option>
+                            <option value="fit-and-wholesome">Fit &amp; Wholesome</option>
+                        </select>
+                    </label>
+                </div>
+                <p class="plan-price" id="plan-price" aria-live="polite">$9.99 per serving · $70.93 per week incl. shipping</p>
+                <div class="plan-row">
+                    <label>Name
+                        <input type="text" name="name" id="plan-name" autocomplete="name" maxlength="80" required>
+                    </label>
+                    <label>Email
+                        <input type="email" name="email" id="plan-email" autocomplete="email" maxlength="254" required>
+                    </label>
+                </div>
+                <button class="btn" type="submit" id="plan-submit">Request this plan</button>
+                <p class="form-note">Practice project, not HelloFresh: nothing is ordered and your name and email are only stored in this demo's database (deleted after 30 days).</p>
+                <p class="form-status" id="plan-status" role="status" aria-live="polite"></p>
+            </form>
             <a class="btn" href="#menus">Browse the menus</a>
         </section>
 
